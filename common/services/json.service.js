@@ -1,14 +1,14 @@
 const fs = require("fs");
 
-exports.getJobs = () => {
+exports.getTasks = () => {
     return new Promise((resolve, reject) => {
         fs.readFile("./common/data/tasks.json", (err, data) => {
             if (err) {
                 reject(err);
             }
             if (data) {
-               let jobs = JSON.parse(data);
-                resolve(jobs.body);
+               let tasks = JSON.parse(data);
+                resolve(tasks);
             }
         });
     });

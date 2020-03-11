@@ -1,19 +1,18 @@
 
-
 const JsonService = require('../../common/services/json.service');
 
 
 exports.findById = (id) => {
     return new Promise((resolve, reject) => {
-        let jobs;
-        JsonService.getJobs().then((data) => {
-            jobs = data;
-            if (jobs && jobs.length) {
-                let job = jobs.find(o => o.id === id);
+        let tasks;
+        JsonService.getTasks().then((data) => {
+            tasks =  data.tasks;
+            if (tasks && tasks.length) {
+                let task = tasks.find(o => o.id === id);
                 if (job)
-                    resolve(job)
+                    resolve(tasks)
                 else
-                    reject(job)
+                    reject(tasks)
             }
         });
     });
@@ -22,13 +21,14 @@ exports.findById = (id) => {
 exports.list = () => {
 
         return new Promise((resolve, reject) => {
-            let jobs;
-            JsonService.getJobs().then((data)=>{
-                jobs = data;
-            if(jobs && jobs.length){
-                resolve(jobs);
+            let tasks;
+            JsonService.getTasks().then((data)=>{
+                tasks = data.tasks;
+                console.log(tasks)
+            if(tasks && tasks.length){
+                resolve(tasks);
             }else{
-                reject(jobs)
+                reject(tasks)
             }
         });
    });
